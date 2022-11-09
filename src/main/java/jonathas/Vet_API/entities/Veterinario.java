@@ -26,10 +26,44 @@ public class Veterinario implements Serializable{
 	private String nome;
 	private String CRMV;
 	
-
-	
 	@Transient
 	private Set<Atendimento> atendimentos = new HashSet<>();
+
+	public Veterinario(Long id, String nome, String cRMV) {
+		this.id = id;
+		this.nome = nome;
+		CRMV = cRMV;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCRMV() {
+		return CRMV;
+	}
+
+	public void setCRMV(String cRMV) {
+		CRMV = cRMV;
+	}
+	
+	public Set<Atendimento> getAtendimentos(){
+		return atendimentos;
+	}
+	
+	
 	
 	
 	

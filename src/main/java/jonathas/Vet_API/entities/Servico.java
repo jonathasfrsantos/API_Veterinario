@@ -30,6 +30,16 @@ public class Servico implements Serializable{
 	
 	@Transient
 	private Set<Atendimento> atendimentos = new HashSet<>();
+	
+
+	public Servico(Long id, String descricao, String categoria, Double valor) {
+		this.id = id;
+		this.descricao = descricao;
+		this.categoria = categoria;
+		this.valor = valor;
+	}
+	
+	
 
 	public Long getId() {
 		return id;
@@ -66,6 +76,7 @@ public class Servico implements Serializable{
 	public Set<Atendimento> getAtendimentos(){
 		return atendimentos;
 	}
+
 	
 	
 

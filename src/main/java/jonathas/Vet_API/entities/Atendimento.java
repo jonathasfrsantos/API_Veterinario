@@ -29,8 +29,10 @@ public class Atendimento implements Serializable {
 	private LocalDateTime dataRealizacao;
 	private StatusAtendimento status;
 	
+	@Transient
 	private Pet pet;
 	
+	@Transient
 	private Veterinario veterinario;
 	
 	@Transient

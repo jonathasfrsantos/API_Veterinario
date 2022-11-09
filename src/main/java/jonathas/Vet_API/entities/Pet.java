@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
@@ -31,10 +33,12 @@ public class Pet implements Serializable {
 	private String sexo;
 	private String nome;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_tutor")
 	private Tutor tutor;
 	
 	@Transient
-	private List<Vacina> vacinas = new ArrayList<>();
+	private List<Vacina> cadernetaVacinacao = new ArrayList<>();
 	
 	@Transient
 	private Set<Atendimento> atendimentos = new HashSet<>();
@@ -106,7 +110,7 @@ public class Pet implements Serializable {
 	}
 	
 	public List<Vacina> getVacinas(){
-		return vacinas;
+		return cadernetaVacinacao;
 		
 	}
 	

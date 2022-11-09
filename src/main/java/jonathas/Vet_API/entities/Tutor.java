@@ -8,8 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
@@ -27,7 +27,8 @@ public class Tutor implements Serializable{
 	private String cpf;
 	private String nome;
 	
-	@Transient
+	
+	@OneToMany(mappedBy = "tutor")
 	private Set<Pet> pets = new HashSet<>();
 
 	public Tutor(Long id, String cpf, String nome) {
