@@ -6,12 +6,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
@@ -37,11 +40,14 @@ public class Pet implements Serializable {
 	@JoinColumn(name = "id_tutor")
 	private Tutor tutor;
 	
-	@Transient
-	private List<Vacina> cadernetaVacinacao = new ArrayList<>();
+	@OneToMany(mappedBy = "id.pet")
+	private List<Vacinacao> cadernetaVacinacao = new ArrayList<>();
 	
-	@Transient
+	@OneToMany(mappedBy = "pet")
 	private Set<Atendimento> atendimentos = new HashSet<>();
+	
+	@OneToOne(mappedBy = "pet", cascade = CascadeType.ALL)
+	private PetCadastro fichaMedica;
 
 	public Pet(Long id, String especie, String raca, String cor, String sexo, String nome, Tutor tutor) {
 		this.id = id;
@@ -109,7 +115,7 @@ public class Pet implements Serializable {
 		this.tutor = tutor;
 	}
 	
-	public List<Vacina> getVacinas(){
+	public List<Vacinacao> getVacinas(){
 		return cadernetaVacinacao;
 		
 	}
@@ -117,6 +123,16 @@ public class Pet implements Serializable {
 	public Set<Atendimento> getAtendimentos(){
 		return atendimentos;
 	}
+
+	public PetCadastro getFichaMedica() {
+		return fichaMedica;
+	}
+
+	public void setFichaMedica(PetCadastro fichaMedica) {
+		this.fichaMedica = fichaMedica;
+	}
+	
+	
 	
 	
 	

@@ -12,8 +12,10 @@ import org.springframework.context.annotation.Profile;
 
 import jonathas.Vet_API.entities.Atendimento;
 import jonathas.Vet_API.entities.Pet;
+import jonathas.Vet_API.entities.PetCadastro;
 import jonathas.Vet_API.entities.Servico;
 import jonathas.Vet_API.entities.Tutor;
+import jonathas.Vet_API.entities.TutorCadastro;
 import jonathas.Vet_API.entities.Vacina;
 import jonathas.Vet_API.entities.Vacinacao;
 import jonathas.Vet_API.entities.Veterinario;
@@ -112,6 +114,18 @@ public class TestConfig implements CommandLineRunner{
 		Atendimento at1 = new Atendimento(null, LocalDateTime.parse("01/02/2022 11:00:00", formatter), LocalDateTime.parse("01/02/2022 11:00:00", formatter), StatusAtendimento.REALIZADO, p9, v2);
 		
 		atendimentoRepository.save(at1);
+		
+		TutorCadastro tcad1 = new TutorCadastro(null, "jonathas@gmail.com", "9999999", "55555555", "rua tal", "1000", "Rio de Janeiro", t4);
+		
+		t4.setCadastro(tcad1);
+		
+		tutorRepository.save(t4);
+		
+		PetCadastro pcad1 = new PetCadastro(null, true, "3 kg", "alergia a amoxicilina", true, p9);
+		
+		p9.setFichaMedica(pcad1);
+		
+		petRepository.save(p9);
 
 	}
 }

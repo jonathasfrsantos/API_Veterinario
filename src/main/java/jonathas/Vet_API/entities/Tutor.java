@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -30,6 +32,9 @@ public class Tutor implements Serializable{
 	
 	@OneToMany(mappedBy = "tutor")
 	private Set<Pet> pets = new HashSet<>();
+	
+	@OneToOne(mappedBy = "tutor", cascade = CascadeType.ALL)
+	private TutorCadastro cadastro;
 
 	public Tutor(Long id, String cpf, String nome) {
 		this.id = id;
@@ -63,6 +68,15 @@ public class Tutor implements Serializable{
 	
 	public Set<Pet> getPet(){
 		return pets;
+	}
+	
+	public TutorCadastro getCadastro() {
+		return cadastro;
+	}
+	
+	public void  setCadastro(TutorCadastro cadastro) {
+		this.cadastro = cadastro;
+		
 	}
 	
 	

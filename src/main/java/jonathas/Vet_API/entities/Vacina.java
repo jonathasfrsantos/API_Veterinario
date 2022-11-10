@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
@@ -32,8 +33,8 @@ public class Vacina implements Serializable{
 	private Double valorVenda;
 	private Integer qtdEstoque;
 	
-	@Transient
-	private List<Pet> pets = new ArrayList<>();
+	@OneToMany(mappedBy = "id.vacina")
+	private List<Vacinacao> cadernetasVacinacao = new ArrayList<>();
 	
 	public Vacina(Long id, String nome, String fabricante, String lote, LocalDate dataFabricacao, Double valorAquisicao,
 			Double valorVenda, Integer qtdEstoque) {
@@ -114,8 +115,8 @@ public class Vacina implements Serializable{
 		this.qtdEstoque = qtdEstoque;
 	}
 	
-	public  List<Pet> getPets(){
-		return pets;
+	public  List<Vacinacao> getVacinasAplicadas(){
+		return cadernetasVacinacao;
 	}
 
 

@@ -8,8 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
@@ -28,7 +28,7 @@ public class Servico implements Serializable{
 	private String categoria;
 	private Double valor;
 	
-	@Transient
+	@ManyToMany(mappedBy = "servicos")
 	private Set<Atendimento> atendimentos = new HashSet<>();
 	
 

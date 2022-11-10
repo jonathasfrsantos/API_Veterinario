@@ -9,8 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import jonathas.Vet_API.entities.enums.StatusAtendimento;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -29,13 +32,16 @@ public class Atendimento implements Serializable {
 	private LocalDateTime dataRealizacao;
 	private StatusAtendimento status;
 	
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "id_pet")
 	private Pet pet;
 	
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "id_veterinario")
 	private Veterinario veterinario;
 	
-	@Transient
+	@ManyToMany
+	@JoinTable(name = "tb_servico_atendimento", joinColumns = @JoinColumn(name = "atendimento_id"), inverseJoinColumns = @JoinColumn(name = "servico_id"))
 	private List<Servico> servicos = new ArrayList<>();
 
 	public Atendimento(Long id, LocalDateTime dataAgendada, LocalDateTime dataRealizacao, StatusAtendimento status,
