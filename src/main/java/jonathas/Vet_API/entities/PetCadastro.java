@@ -6,9 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
@@ -27,8 +26,7 @@ public class PetCadastro implements Serializable {
 	private String observacoes;
 	private Boolean castrado;
 	
-	@OneToOne
-	@MapsId
+	@Transient
 	private Pet pet;
 
 	public PetCadastro(Long id, Boolean vermifugado, String peso, String observacoes, Boolean castrado, Pet pet) {

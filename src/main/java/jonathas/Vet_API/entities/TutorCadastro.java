@@ -6,14 +6,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "tb_tutorCadastro")
 public class TutorCadastro implements Serializable {
@@ -21,6 +20,7 @@ public class TutorCadastro implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
 	private Long id;
 	private String email;
 	private String celular;
@@ -29,8 +29,7 @@ public class TutorCadastro implements Serializable {
 	private String num_logradouro;
 	private String cidade;
 	
-	@OneToOne
-	@MapsId
+	@Transient
 	private Tutor tutor;
 
 	public TutorCadastro(Long id, String email, String celular, String cep, String logradouro, String num_logradouro,

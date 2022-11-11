@@ -3,6 +3,8 @@ package jonathas.Vet_API.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -20,6 +22,7 @@ public class Vacinacao implements Serializable {
 	@EmbeddedId
 	private VacinacaoPK id = new VacinacaoPK();
 	
+
 	private LocalDate dataVacinacao;
 	private Double valor;
 	private String dose;
@@ -32,7 +35,7 @@ public class Vacinacao implements Serializable {
 		this.dose = dose;
 		
 	}
-	
+
 	public Pet getPet() {
 		return id.getPet();
 	}
@@ -40,6 +43,7 @@ public class Vacinacao implements Serializable {
 	public void setPet(Pet pet) {
 		id.setPet(pet);
 	}
+
 
 	public Vacina getVacina() {
 		return id.getVacina();

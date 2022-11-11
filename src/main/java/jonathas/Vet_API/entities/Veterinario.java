@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +29,7 @@ public class Veterinario implements Serializable{
 	private String CRMV;
 	
 	@Transient
+	@JsonIgnore
 	private Set<Atendimento> atendimentos = new HashSet<>();
 
 	public Veterinario(Long id, String nome, String cRMV) {

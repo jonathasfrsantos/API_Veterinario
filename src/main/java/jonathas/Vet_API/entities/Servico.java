@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +31,7 @@ public class Servico implements Serializable{
 	private Double valor;
 	
 	@ManyToMany(mappedBy = "servicos")
+	@JsonIgnore
 	private Set<Atendimento> atendimentos = new HashSet<>();
 	
 

@@ -4,36 +4,37 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
 @NoArgsConstructor
-@EqualsAndHashCode()
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "tb_tutor")
 public class Tutor implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String cpf;
 	private String nome;
-	
-	
+
 	@OneToMany(mappedBy = "tutor")
 	private Set<Pet> pets = new HashSet<>();
 	
-	@OneToOne(mappedBy = "tutor", cascade = CascadeType.ALL)
+	@Transient
 	private TutorCadastro cadastro;
 
 	public Tutor(Long id, String cpf, String nome) {
@@ -66,6 +67,7 @@ public class Tutor implements Serializable{
 		this.nome = nome;
 	}
 	
+	@JsonIgnore
 	public Set<Pet> getPet(){
 		return pets;
 	}
