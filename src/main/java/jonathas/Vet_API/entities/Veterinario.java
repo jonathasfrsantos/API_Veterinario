@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
@@ -27,15 +29,22 @@ public class Veterinario implements Serializable{
 	private Long id;
 	private String nome;
 	private String CRMV;
+	private String celular;
+	private String email;
+	private String especialidade;
 	
 	@Transient
 	@JsonIgnore
+	@OneToMany(mappedBy = "atendimentos")
 	private Set<Atendimento> atendimentos = new HashSet<>();
 
-	public Veterinario(Long id, String nome, String cRMV) {
+	public Veterinario(Long id, String nome, String CRMV, String celular, String email, String especialidade) {
 		this.id = id;
 		this.nome = nome;
-		CRMV = cRMV;
+		this.CRMV = CRMV;
+		this.celular = celular;
+		this.email = email;
+		this.especialidade = especialidade;
 	}
 
 	public Long getId() {
@@ -60,6 +69,31 @@ public class Veterinario implements Serializable{
 
 	public void setCRMV(String cRMV) {
 		CRMV = cRMV;
+	}
+	
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getEspecialidade() {
+		return especialidade;
+	}
+
+	public void setEspecialidade(String especialidade) {
+		this.especialidade = especialidade;
 	}
 	
 	public Set<Atendimento> getAtendimentos(){

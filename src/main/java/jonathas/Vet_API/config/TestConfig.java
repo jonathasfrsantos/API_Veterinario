@@ -95,9 +95,10 @@ public class TestConfig implements CommandLineRunner{
 		Vacina vac3 = new Vacina(null, "LEISHMANIOSE", "Lab Shangai Corp", "652555ZW", LocalDate.parse("02/06/2020", formatter2), 52.30, 98.00, 50);
 			
 		vacinaRepository.saveAll(Arrays.asList(vac1, vac2, vac3));
+	
 		
-		Veterinario v1 = new Veterinario(null, "Hans Chucrute", "88888-8");
-		Veterinario v2 = new Veterinario(null, "Dazle Anne", "77777-7");
+		Veterinario v1 = new Veterinario(null, "Ana Paula Brown", "88888-7", "99999-9999", "anapaulbrown@gmail.com", "clínico geral");
+		Veterinario v2 = new Veterinario(null, "Dazle Anne", "98888-7", "99999-9999", "dazleanne@gmail.com", "cirurgia cardíaca");
 
 		veterinarioRepository.saveAll(Arrays.asList(v1, v2));
 		
